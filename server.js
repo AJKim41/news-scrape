@@ -22,7 +22,6 @@ mongoose.connect(MONGODB_URI, {
 app.get("/scrape", function(req, res) {
   axios.get("https://news.ycombinator.com/").then(response => {
     var $ = cheerio.load(response.data);
-    console.log(response.data);
 
     $("a.storylink").each(function(i, element) {
       var result = {};
@@ -39,7 +38,7 @@ app.get("/scrape", function(req, res) {
         });
     });
 
-    res.send("Scrape Complete");
+    res.redirect("/");
   });
 });
 
